@@ -1,0 +1,62 @@
+package ua.goit.model;
+
+import ua.goit.dao.Identity;
+
+public class Developer implements Identity {
+    private String name;
+    private Long id;
+    private String sex;
+    private Long salary;
+    private Long age;
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public Long getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Long salary) {
+        this.salary = salary;
+    }
+
+    public Long getAge() {
+        return age;
+    }
+
+    public void setAge(Long age) {
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Developer{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                ", sex='" + sex + '\'' +
+                ", salary=" + salary +
+                ", age=" + age +
+                '}';
+    }
+}
