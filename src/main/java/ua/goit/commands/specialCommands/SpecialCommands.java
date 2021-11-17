@@ -1,15 +1,8 @@
 package ua.goit.commands.specialCommands;
 
-import ua.goit.DbHelper;
 import ua.goit.commands.Command;
-import ua.goit.dao.ProjectDao;
 import ua.goit.dao.SpecialDao;
-import ua.goit.model.Project;
-
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class SpecialCommands implements Command {
 

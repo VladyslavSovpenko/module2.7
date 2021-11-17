@@ -1,6 +1,7 @@
 package ua.goit.dao;
 
 import ua.goit.DbHelper;
+import ua.goit.model.ProjectList;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -65,7 +66,7 @@ public class SpecialDao {
 
     public void getProjectsListDao() throws SQLException {
 
-        List<Map<String, Map<Date, Integer>>> results = new ArrayList<>();
+        List<ProjectList> devList = new ArrayList<>();
 
         String sql = "select p.date_added, p.name, count(*) " +
                 "from developers d " +
@@ -76,15 +77,13 @@ public class SpecialDao {
         ResultSet resultSet = DbHelper.getWithPreparedStatement(sql, ps -> {
         });
         while (resultSet.next()) {
-            Map<Date, Integer> res1 = new HashMap<>();
-            res1.put(resultSet.getDate("date_added"), resultSet.getInt("count"));
-            Map<String, Map<Date, Integer>> res2 = new HashMap<>();
-            res2.put(resultSet.getString("name"), res1);
-            results.add(res2);
+            ProjectList projectList = new ProjectList();
+            projectList.setCount(resultSet.getInt("count"));
+            projectList.setName(resultSet.getString("name"));
+            projectList.setDateAdded(resultSet.getDate("date_added"));
+            devList.add(projectList);
         }
-        for (int i = 0; i < results.size(); i++) {
-            System.out.print(results.get(i).values()+" ");
-            System.out.println(results.get(i).keySet());
-        }
+        System.out.println(devList);
     }
 }
+
