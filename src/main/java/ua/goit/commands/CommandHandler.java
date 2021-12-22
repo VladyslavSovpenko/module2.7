@@ -11,7 +11,7 @@ public class CommandHandler {
     Map<String, Command> commandMap = new HashMap<>();
 
     public CommandHandler() {
-        commandMap.put("developers", new CommandDev());
+        commandMap.put("developers", new CommandDeveloper());
         commandMap.put("special", new SpecialCommands());
         commandMap.put("customers", new CommandCustomer());
         commandMap.put("projects", new CommandProject());

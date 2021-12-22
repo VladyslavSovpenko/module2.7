@@ -1,15 +1,21 @@
 package ua.goit.commands;
 
+import org.apache.log4j.Logger;
 import ua.goit.dao.DeveloperDao;
 import ua.goit.model.Developer;
+import ua.goit.service.DeveloperService;
+
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
 
-public class CommandDev implements Command {
+public class CommandDeveloper implements Command {
 
-    private final DeveloperDao developerDao = new DeveloperDao();
+    public static final Logger LOGGER = Logger.getLogger(CommandDeveloper.class);
+
+    private static final DeveloperService service = DeveloperService.getInstance();
+
 
     @Override
     public void handle(String params) throws SQLException {
@@ -43,12 +49,12 @@ public class CommandDev implements Command {
         dev.setSex(paramsArray[3]);
         dev.setSalary(Long.valueOf(paramsArray[4]));
 
-        developerDao.create(dev);
+        service.create(dev);
     }
 
     public void get(String params) throws SQLException {
         String[] paramsArray = params.split(" ");
-        Optional<Developer> developer = developerDao.get(Long.parseLong(paramsArray[0]));
+        Optional<Developer> developer = service.get(Long.parseLong(paramsArray[0]));
         if (developer.isPresent()) {
             System.out.println(developer.get());
         } else {
@@ -58,30 +64,30 @@ public class CommandDev implements Command {
 
     public void delete(String params) throws SQLException {
         String[] paramsArray = params.split(" ");
-        Optional<Developer> developer = developerDao.get(Long.parseLong(paramsArray[0]));
+        Optional<Developer> developer = service.get(Long.parseLong(paramsArray[0]));
         if (developer.isPresent()) {
-            developerDao.delete(developer.get());
+            service.delete(developer.get());
         } else {
             System.out.println("User with id " + paramsArray[0] + " not found");
         }
     }
 
     public void getAll() throws SQLException {
-        List<Developer> all = developerDao.getAll();
+        List<Developer> all = service.getAll();
         System.out.println("Returned "+ all.size() + " users");
         System.out.println(all);
     }
 
     public void update(String params) throws SQLException {  //id, name, age, sex, salary
         String[] paramsArray = params.split(" ");
-        Optional<Developer> developerOptional = developerDao.get(Long.parseLong(paramsArray[0]));
+        Optional<Developer> developerOptional = service.get(Long.parseLong(paramsArray[0]));
         if (developerOptional.isPresent()) {
             Developer dev = developerOptional.get();
             dev.setName(paramsArray[1]);
             dev.setAge(Long.parseLong(paramsArray[2]));
             dev.setSex(paramsArray[3]);
             dev.setSalary(Long.parseLong(paramsArray[4]));
-            developerDao.update(dev);
+            service.update(dev);
         } else {
             System.out.println("User with id " + paramsArray[0] + " not found");
         }
