@@ -8,7 +8,7 @@
     </head>
     <body>
     <jsp:include page="navigation.jsp" />
-        <form name="form" action="<%=request.getContextPath()%>/LoginServlet" method="post">
+        <form name="form" action="<%=request.getContextPath()%>/login" method="post">
 
         <table align="center">
         <tr>
@@ -17,7 +17,7 @@
         </tr>
         <tr>
         <td>Password</td>
-        <td><input type="text" name="password" /></td>
+        <td><input type="password" name="password" /></td>
         </tr>
         <tr>
         <td><span style="color:red"><%=(request.getAttribute("errMessage") == null) ? "" : request.getAttribute("errMessage")%></span></td>

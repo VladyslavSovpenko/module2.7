@@ -2,12 +2,23 @@ package ua.model;
 
 import ua.dao.Identity;
 
+import java.util.List;
+
 public class Developer implements Identity {
     private String name;
     private Long id;
     private String sex;
     private Long salary;
     private Long age;
+    private String password;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public String getSex() {
         return sex;

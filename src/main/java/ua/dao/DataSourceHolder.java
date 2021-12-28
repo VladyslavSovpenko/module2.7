@@ -13,9 +13,9 @@ public class DataSourceHolder {
 
     private DataSourceHolder() {
         Properties prop = AppProperties.getProperties();
-        switch (prop.getProperty("db.type")){
-            case "postgres": initPG(prop);
-        }
+
+           initPG(prop);
+
         PGSimpleDataSource dataSource = initPG(prop);
         this.dataSource = dataSource;
 

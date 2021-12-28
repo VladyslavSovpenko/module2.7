@@ -22,18 +22,19 @@ public class DeveloperDao extends AbstractDao<Developer> {
         developer.setName(resultSet.getString("name"));
         developer.setSalary(resultSet.getLong("salary"));
         developer.setSex(resultSet.getString("sex"));
+        developer.setPassword(resultSet.getString("password"));
         return developer;
     }
 
     @Override
     public Optional<Developer> create(Developer entity) throws SQLException {
-        String sql = "insert into developers(id, name, age, sex, salary) values(?,?,?,?,?)";
+        String sql = "insert into developers(name, age, sex, salary) values(?,?,?,?)";
+
         DbHelper.executeWithPreparedStatement(sql, ps -> {
-            ps.setLong(1, entity.getId());
-            ps.setString(2, entity.getName());
-            ps.setLong(3, entity.getAge());
-            ps.setString(4, entity.getSex());
-            ps.setLong(5, entity.getSalary());
+                     ps.setString(1, entity.getName());
+            ps.setLong(2, entity.getAge());
+            ps.setString(3, entity.getSex());
+            ps.setLong(4, entity.getSalary());
         });
         System.out.println("Records was created");
         return Optional.empty();
@@ -41,12 +42,28 @@ public class DeveloperDao extends AbstractDao<Developer> {
 
     @Override
     public void update(Developer entity) throws SQLException {
-        String sql = "update developers set salary = ?, name =? where id=?";
+        String sql = "update developers set salary = ?, name =?, age=?, sex=? where id=?";
         DbHelper.executeWithPreparedStatement(sql, ps -> {
             ps.setLong(1, entity.getSalary());
             ps.setString(2, entity.getName());
-            ps.setLong(3, entity.getId());
+            ps.setLong(3, entity.getAge());
+            ps.setString(4, entity.getSex());
+            ps.setLong(5, entity.getId());
         });
         System.out.println("Record was updated");
+    }
+
+    public Developer getByName(String name) throws SQLException {
+        String query = String.format("select * from %s where name=?", getTableName());
+        ResultSet resultSet = DbHelper.getWithPreparedStatement(
+                query, ps -> {
+                    ps.setString(1, name);
+                });
+        if (resultSet.next()) {
+            System.out.println("Record was selected");
+            return mapToEntity(resultSet);
+        } else {
+            return null;
+        }
     }
 }

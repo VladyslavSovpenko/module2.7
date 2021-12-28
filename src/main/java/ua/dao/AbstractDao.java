@@ -11,6 +11,7 @@ import java.util.Optional;
 public abstract class AbstractDao<T extends Identity> implements Dao<T> {
 
     abstract String getTableName();
+
     abstract T mapToEntity(ResultSet resultSet) throws SQLException;
 
     @Override
@@ -54,7 +55,6 @@ public abstract class AbstractDao<T extends Identity> implements Dao<T> {
         resultSet.close();
         return result;
     }
-
 
 
 }

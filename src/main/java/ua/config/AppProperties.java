@@ -12,7 +12,7 @@ public class AppProperties {
     private AppProperties() {
         this.properties= new Properties();
         try {
-            properties.load(new FileInputStream("src/main/resources/app.properties"));
+            properties.load(new FileInputStream("C:\\Users\\Vlad\\Documents\\GitHub\\module2.6\\src\\main\\resources\\app.properties"));
         } catch (IOException e) {
             e.printStackTrace();
         }
