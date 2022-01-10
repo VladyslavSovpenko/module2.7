@@ -1,9 +1,6 @@
-package ua.servlets;
-
-
+package ua.servlets.developer;
 
 import jakarta.servlet.ServletException;
-
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,14 +8,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import ua.model.Developer;
 import ua.service.DeveloperService;
 import ua.service.HandleBodyUtil;
-
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet("/developers")
 public class DeveloperServlet extends HttpServlet {
+
     private static DeveloperService developerService = DeveloperService.getInstance();
 
     @Override

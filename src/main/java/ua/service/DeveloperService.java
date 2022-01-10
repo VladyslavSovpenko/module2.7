@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class DeveloperService {
 
-    public static final Logger LOGGER = Logger.getLogger(CommandDeveloper.class);
+    public static final Logger LOGGER = Logger.getLogger(DeveloperService.class);
     private final DeveloperDao developerDao = new DeveloperDao();
 
     private static DeveloperService instance;
@@ -25,8 +25,6 @@ public class DeveloperService {
         }
         return instance;
     }
-
-
 
     public Optional<Developer> get(long id) {
         Optional<Developer> developerOptional = null;

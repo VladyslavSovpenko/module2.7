@@ -1,4 +1,4 @@
-package ua.servlets;
+package ua.servlets.developer;
 
 import com.google.gson.Gson;
 import jakarta.servlet.ServletException;
@@ -20,7 +20,7 @@ import java.util.Scanner;
 public class ViewDevServlet extends HttpServlet {
 
     private static DeveloperService developerService = DeveloperService.getInstance();
-    private Gson gson = new Gson();
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
