@@ -10,17 +10,15 @@ import jakarta.servlet.http.HttpServletResponse;
 import ua.model.Developer;
 import ua.service.DeveloperService;
 import ua.service.HandleBodyUtil;
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Optional;
-import java.util.Scanner;
+
 
 @WebServlet("/developers/*")
 public class ViewDevServlet extends HttpServlet {
 
     private static DeveloperService developerService = DeveloperService.getInstance();
-
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

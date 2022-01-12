@@ -43,9 +43,9 @@ public class TemplateHandler {
 
     public String getTemplate(String templateName) {
 //        try {
-////            InputStream inputStream = new FileInputStream("src/main/resources/" + templateName + ".html");
-////            return new String(inputStream.readAllBytes());
-////        } catch (FileNotFoundException e) {
+//            InputStream inputStream = new FileInputStream("src/main/resources/" + templateName + ".html");
+//            return new String(inputStream.readAllBytes());
+//        } catch (FileNotFoundException e) {
 //            e.printStackTrace();
 //        } catch (IOException e) {
 //            e.printStackTrace();

@@ -2,7 +2,6 @@ package ua.model;
 
 import ua.dao.Identity;
 
-import java.util.List;
 
 public class Developer implements Identity {
     private String name;

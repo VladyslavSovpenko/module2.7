@@ -25,6 +25,11 @@ public class ViewProjectServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String requestURI = req.getRequestURI();
         String id = requestURI.substring(10);
+        if("new".equalsIgnoreCase(id)){
+            req.setAttribute("project", new Project());
+            req.setAttribute("isNew", true);
+            req.getRequestDispatcher("/project.jsp").forward(req,resp);
+        }
 
         Optional<Project> projectOptional = service.get(Long.parseLong(id));
         if (projectOptional.isPresent()) {

@@ -1,21 +1,21 @@
 package ua.dao;
 
 import ua.DbHelper;
-import ua.model.Customer;
+import ua.model.Customers;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 
-public class CustomerDao extends AbstractDao<Customer> {
+public class CustomerDao extends AbstractDao<Customers> {
     @Override
     String getTableName() {
         return "customers";
     }
 
     @Override
-    Customer mapToEntity(ResultSet resultSet) throws SQLException {
-        Customer customer = new Customer();
+    Customers mapToEntity(ResultSet resultSet) throws SQLException {
+        Customers customer = new Customers();
         customer.setId(resultSet.getLong("id"));
         customer.setCountry(resultSet.getString("country"));
         customer.setName(resultSet.getString("name"));
@@ -23,7 +23,7 @@ public class CustomerDao extends AbstractDao<Customer> {
     }
 
     @Override
-    public Optional<Customer> create(Customer entity) throws SQLException {
+    public Optional<Customers> create(Customers entity) throws SQLException {
         String sql = "insert into customers (name, country) values (?,?);";
         DbHelper.executeWithPreparedStatement(sql, ps -> {
             ps.setString(1, entity.getName());
@@ -34,7 +34,7 @@ public class CustomerDao extends AbstractDao<Customer> {
     }
 
     @Override
-    public void update(Customer entity) throws SQLException {
+    public void update(Customers entity) throws SQLException {
         String sql = "update customers set name = ?, country = ? where id = ?";
         DbHelper.executeWithPreparedStatement(sql, ps -> {
             ps.setString(1, entity.getName());

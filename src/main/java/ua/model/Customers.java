@@ -2,7 +2,7 @@ package ua.model;
 
 import ua.dao.Identity;
 
-public class Customer implements Identity {
+public class Customers implements Identity {
     private Long id;
     private String name;
     private String country;

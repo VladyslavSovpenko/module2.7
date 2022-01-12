@@ -1,7 +1,7 @@
 package ua.commands;
 
 import ua.dao.CustomerDao;
-import ua.model.Customer;
+import ua.model.Customers;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -36,7 +36,7 @@ public class CommandCustomer implements Command {
 
     public void create(String params) throws SQLException {
         String[] paramsArray = params.split(" ");
-        Customer customer = new Customer();
+        Customers customer = new Customers();
         customer.setCountry(paramsArray[1]);
         customer.setName(paramsArray[0]);
         customerDao.create(customer);
@@ -44,7 +44,7 @@ public class CommandCustomer implements Command {
 
     public void get(String params) throws SQLException {
         String[] paramsArray = params.split(" ");
-        Optional<Customer> customer = customerDao.get(Long.parseLong(paramsArray[0]));
+        Optional<Customers> customer = customerDao.get(Long.parseLong(paramsArray[0]));
         if (customer.isPresent()) {
             System.out.println(customer.get());
         } else {
@@ -54,7 +54,7 @@ public class CommandCustomer implements Command {
 
     public void delete(String params) throws SQLException {
         String[] paramsArray = params.split(" ");
-        Optional<Customer> customer = customerDao.get(Long.parseLong(paramsArray[0]));
+        Optional<Customers> customer = customerDao.get(Long.parseLong(paramsArray[0]));
         if (customer.isPresent()) {
             customerDao.delete(customer.get());
         } else {
@@ -63,16 +63,16 @@ public class CommandCustomer implements Command {
     }
 
     public void getAll() throws SQLException {
-        List<Customer> all = customerDao.getAll();
+        List<Customers> all = customerDao.getAll();
         System.out.println("Returned " + all.size() + " users");
         System.out.println(all);
     }
 
     public void update(String params) throws SQLException {  //id, name, country
         String[] paramsArray = params.split(" ");
-        Optional<Customer> customerOptional = customerDao.get(Long.parseLong(paramsArray[0]));
+        Optional<Customers> customerOptional = customerDao.get(Long.parseLong(paramsArray[0]));
         if (customerOptional.isPresent()) {
-            Customer customer = customerOptional.get();
+            Customers customer = customerOptional.get();
             customer.setName(paramsArray[1]);
             customer.setCountry(paramsArray[2]);
             customerDao.update(customer);

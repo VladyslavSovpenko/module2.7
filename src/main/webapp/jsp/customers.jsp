@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Projects page</title>
+    <title>Customers page</title>
    <jsp:include page="headers.jsp" />
     </head>
 
@@ -9,12 +9,12 @@
 
 <div class="container">
     <div class="row">
-        <h2>Projects page</h2>
+        <h2>Customers page</h2>
     </div>
     <div class="row">
         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
             <div class="btn-group me-2" role="group" aria-label="Second group">
-                <a href="/projects/new" type="button" class="btn btn-primary">New record</a>
+                <a href="/customers/new" type="button" class="btn btn-primary">New record</a>
             </div>
         </div>
         <table class="table">
@@ -22,29 +22,28 @@
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Name</th>
-                 <th scope="col">Language</th>
-                  <th scope="col">Cost</th>
-                   <th scope="col">Date added</th>
-            </tr>
+                 <th scope="col">Country</th>
+
+             </tr>
             </thead>
             <tbody>
+
             <%
-            Object[] projects = (Object[]) request.getAttribute("projects");
-                for(Object objProject : projects){
-                ua.model.Project project = (ua.model.Project) objProject;
+            Object[] customers = (Object[]) request.getAttribute("customers");
+                for(Object objCustomers : customers){
+                ua.model.Customers customer = (ua.model.Customers) objCustomers;
                 %>
 
                 <tr>
-                    <td><%= project.getId() %></td>
-                    <td><%= project.getName()  %></td>
-                    <td><%= project.getLanguage()  %></td>
-                    <td><%= project.getCost() %></td>
-                    <td><%= project.getDate()  %></td>
+                    <td><%= customer.getId() %></td>
+                    <td><%= customer.getName()  %></td>
+                    <td><%= customer.getCountry()  %></td>
+
                     <td>
                             <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                                 <div class="btn-group mr-2" role="group" aria-label="First group">
-                                    <a href="/projects/<%= project.getId() %>" type="button" class="btn btn-warning">Edit</a>
-                                    <a href="/projects/<%= project.getId() %>"type="button" class="btn btn-danger">Remove</a>
+                                    <a href="/customers/<%= customer.getId() %>" type="button" class="btn btn-warning">Edit</a>
+                                    <a href="/customers/delete/<%= customer.getId() %>"type="button" class="btn btn-danger">Remove</a>
                                 </div>
 
                             </div>
