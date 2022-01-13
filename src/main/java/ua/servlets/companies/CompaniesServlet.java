@@ -20,8 +20,8 @@ public class CompaniesServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Companies> all = companiesService.getAll();
-        Object[] users = all.toArray();
-        req.setAttribute("companies", users);
+        Object[] companies = all.toArray();
+        req.setAttribute("companies", companies);
         req.getRequestDispatcher("companies.jsp").forward(req, resp);
     }
 

@@ -35,7 +35,7 @@
                 %>
 
                 <tr>
-                    <td><%= customer.getId() %></td>
+                    <td><%= customer.getId()  %></td>
                     <td><%= customer.getName()  %></td>
                     <td><%= customer.getCountry()  %></td>
 
