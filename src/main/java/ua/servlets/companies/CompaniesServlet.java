@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import ua.model.Companies;
 import ua.service.CompaniesService;
 import ua.service.HandleBodyUtil;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -19,10 +20,17 @@ public class CompaniesServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Companies> all = companiesService.getAll();
-        Object[] companies = all.toArray();
-        req.setAttribute("companies", companies);
-        req.getRequestDispatcher("companies.jsp").forward(req, resp);
+        String deleteId = req.getParameter("deleteId");
+        if (deleteId != null) {
+            Companies companies = new Companies();
+            companies.setId(Long.parseLong(deleteId));
+            companiesService.delete(companies);
+        }
+            List<Companies> all = companiesService.getAll();
+            Object[] companies = all.toArray();
+            req.setAttribute("companies", companies);
+            req.getRequestDispatcher("companies.jsp").forward(req, resp);
+
     }
 
     @Override

@@ -19,6 +19,14 @@ public class DeveloperServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        String deleteId = request.getParameter("deleteId");
+        if (deleteId != null){
+            Developer developer = new Developer();
+            developer.setId(Long.parseLong(deleteId));
+            developerService.delete(developer);
+        }
+
         List<Developer> all = developerService.getAll();
         Object[] users = all.toArray();
         request.setAttribute("developers", users);

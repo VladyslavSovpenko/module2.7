@@ -1,5 +1,4 @@
 package ua.servlets.skills;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -21,6 +20,14 @@ public class SkillsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        String deleteId = req.getParameter("deleteId");
+        if (deleteId != null){
+            Skills skills = new Skills();
+            skills.setId(Long.parseLong(deleteId));
+            skillService.delete(skills);
+        }
+
         List<Skills> all = skillService.getAll();
         Object[] skills = all.toArray();
         req.setAttribute("skills", skills);

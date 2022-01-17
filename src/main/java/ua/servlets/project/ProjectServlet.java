@@ -19,6 +19,14 @@ public class ProjectServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        String deleteId = req.getParameter("deleteId");
+        if (deleteId!= null){
+            Project project = new Project();
+            project.setId(Long.parseLong(deleteId));
+            service.delete(project);
+        }
+
         List<Project> all = service.getAll();
         Object[] projects = all.toArray();
         req.setAttribute("projects", projects);

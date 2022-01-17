@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Optional;
 
-@WebServlet("/customers")
+@WebServlet("/customers/*")
 public class ViewCustomerServlet extends HttpServlet {
 
     private static CustomerService customerService = CustomerService.getInstance();
@@ -22,7 +22,7 @@ public class ViewCustomerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String requestURI = req.getRequestURI();
-        String id = requestURI.substring(10);
+        String id = requestURI.substring(11);
 
         if ("new".equalsIgnoreCase(id)){
             req.setAttribute("customers", new Customers());

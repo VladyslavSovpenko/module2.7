@@ -9,7 +9,7 @@ import java.util.*;
 
 public class SpecialDao {
 
-    public void getDevsSalaryOnSeparateProjectDao(String params) throws SQLException {
+    public String getDevsSalaryOnSeparateProjectDao(String params) throws SQLException {
         String sql = String.format("select sum(salary) from developers d " +
                 "join dev_to_project dtp on dtp.id_dev =d.id " +
                 "join projects p on p.id =dtp.id_projects  where p.id=%s group by p.name order by sum(salary)", params);
@@ -19,9 +19,10 @@ public class SpecialDao {
         if (resultSet.next()) {
             System.out.println("salary sum = " + resultSet.getString("sum"));
         }
+        return resultSet.getString("sum");
     }
 
-    public void getDeveloperListOfProjectDao(String params) throws SQLException {
+    public List<String> getDeveloperListOfProjectDao(String params) throws SQLException {
         List<String> devList = new ArrayList<>();
         String sql = String.format("select d.name from developers d " +
                 "join dev_to_project dtp on dtp.id_dev = d.id " +
@@ -33,6 +34,8 @@ public class SpecialDao {
         }
         resultSet.close();
         System.out.println(devList);
+        return devList;
+
     }
 
     public void getDevsWithLevelListDao(String params) throws SQLException {

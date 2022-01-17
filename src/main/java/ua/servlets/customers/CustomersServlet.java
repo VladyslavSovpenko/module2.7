@@ -21,6 +21,14 @@ public class CustomersServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        String deleteId = req.getParameter("deleteId");
+        if (deleteId != null) {
+            Customers customers = new Customers();
+            customers.setId(Long.parseLong(deleteId));
+            customerService.delete(customers);
+        }
+
         List<Customers> all = customerService.getAll();
         Object[] customers = all.toArray();
         req.setAttribute("customers", customers);

@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import ua.model.Companies;
 import ua.model.Developer;
 import ua.service.CompaniesService;
@@ -24,10 +25,10 @@ public class ViewCompaniesServlet extends HttpServlet {
         String requestURI = req.getRequestURI();
         String id = requestURI.substring(11);
 
-        if ("new".equalsIgnoreCase(id)){
+        if ("new".equalsIgnoreCase(id)) {
             req.setAttribute("companies", new Companies());
             req.setAttribute("isNew", true);
-            req.getRequestDispatcher("/company.jsp").forward(req,resp);
+            req.getRequestDispatcher("/company.jsp").forward(req, resp);
         }
 
         Optional<Companies> companiesOptional = companiesService.get(Long.parseLong(id));
@@ -41,9 +42,9 @@ public class ViewCompaniesServlet extends HttpServlet {
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Companies companies= HandleBodyUtil.getModelFromStream(req.getInputStream(),Companies.class);
+        Companies companies = HandleBodyUtil.getModelFromStream(req.getInputStream(), Companies.class);
 
-        if (companies!=null){
+        if (companies != null) {
             try {
                 companiesService.update(companies);
             } catch (SQLException e) {
