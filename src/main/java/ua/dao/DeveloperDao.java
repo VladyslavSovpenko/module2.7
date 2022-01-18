@@ -15,7 +15,7 @@ public class DeveloperDao extends AbstractDao<Developer> {
     }
 
     @Override
-    Developer mapToEntity(ResultSet resultSet) throws SQLException {
+    public Developer mapToEntity(ResultSet resultSet) throws SQLException {
         Developer developer = new Developer();
         developer.setId(resultSet.getLong("id"));
         developer.setAge(resultSet.getLong("age"));

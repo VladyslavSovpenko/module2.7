@@ -8,6 +8,7 @@
 <jsp:include page="navigation.jsp" />
 
 <% ua.model.Skills skills = (ua.model.Skills)request.getAttribute("skills"); %>
+<% ua.model.Project project = (ua.model.Project)request.getAttribute("project"); %>
 
 <div class="container">
     <div class="row">
@@ -34,14 +35,14 @@
                         <div class="row">
                                     <div class="mb-3">
                                         <label for="name" class="form-label"></label>
-                                        <input type="text" disabled class="form-control" value=""
+                                        <input type="text"  class="form-control" value=""
                                                id="task1" placeholder="Projects name">
                                     </div>
                         </td>
                         <td>
                                                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                                                 <div class="btn-group me-2" role="group" aria-label="Second group">
-                                                  <button onclick="save()" type="button" class="btn btn-primary">Send</button>
+                                                  <button onclick="saveOne()" type="button" class="btn btn-primary">Send</button>
                                                 </div>
                                                 </div>
                                             </td>
@@ -56,14 +57,14 @@
                                             <div class="row">
                                                         <div class="mb-3">
                                                             <label for="name" class="form-label"></label>
-                                                            <input type="text" disabled class="form-control" value=""
+                                                            <input type="text"  class="form-control" value=""
                                                                    id="task2" placeholder="Projects name">
                                                         </div>
                                             </td>
                                             <td>
                                                                     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                                                                     <div class="btn-group me-2" role="group" aria-label="Second group">
-                                                                      <button onclick="save()" type="button" class="btn btn-primary">Send</button>
+                                                                      <button onclick="saveTwo()" type="button" class="btn btn-primary">Send</button>
                                                                     </div>
                                                                     </div>
                                                                 </td>
@@ -76,7 +77,7 @@
                         <div class="row">
                                     <div class="mb-3">
                                         <label for="name" class="form-label"></label>
-                                        <input type="text" disabled class="form-control" value=""
+                                        <input type="text"  class="form-control" value=""
                                                id="task3" placeholder="Language">
                                     </div>
                         </td>
@@ -96,7 +97,7 @@
                         <div class="row">
                                     <div class="mb-3">
                                         <label for="name" class="form-label"></label>
-                                        <input type="text" disabled class="form-control" value=""
+                                        <input type="text"  class="form-control" value=""
                                                id="task4" placeholder="Language level">
                                     </div>
                         </td>
@@ -115,7 +116,7 @@
                         <div class="row">
                                     <div class="mb-3">
                                         <label for="name" class="form-label"></label>
-                                        <input type="text" disabled class="form-control" value=""
+                                        <input type="text"  class="form-control" value=""
                                                id="task5" placeholder="Projects name">
                                     </div>
                         </td>
@@ -143,16 +144,12 @@ let task3=document.getElementById('task3');
 let task4=document.getElementById('task4');
 let task5=document.getElementById('task5');
 
-    function save() {
+    function saveOne() {
      let body = {
-     language: ta
-     skillRate:
+     name: task1.value
      }
-
-      <% if(skills.getId() == null) {%>
-            let url = '/special';
-            let method= 'POST';
-      <% }%>
+     let url = '/special/1';
+     let method= 'POST';
 
 fetch(url, {
             method: method,
@@ -163,9 +160,22 @@ fetch(url, {
         }
         );
     }
+    function saveTwo() {
+         let body = {
+         name: task2.value
+         }
+         let url = '/special/2';
+         let method= 'POST';
+
+    fetch(url, {
+                method: method,
+                body: JSON.stringify(body)
+            })
+            .then( _ => {
+                window.location.href = '/special';
+            }
+            );
+        }
 </script>
-
-
-
 </body>
 </html>
