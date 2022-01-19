@@ -77,7 +77,7 @@ public class SpecialDao {
         return devs;
     }
 
-    public void getProjectsListDao() throws SQLException {
+    public List<ProjectList> getProjectsListDao() throws SQLException {
 
         List<ProjectList> devList = new ArrayList<>();
 
@@ -97,6 +97,7 @@ public class SpecialDao {
             devList.add(projectList);
         }
         System.out.println(devList);
+        return devList;
     }
 }
 

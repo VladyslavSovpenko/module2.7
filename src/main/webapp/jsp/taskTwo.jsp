@@ -9,6 +9,7 @@
 <jsp:include page="navigation.jsp" />
 
 <% ua.model.Project project = (ua.model.Project)request.getAttribute("project"); %>
+<% Object[] developers = (Object[])request.getAttribute("developers"); %>
 
 
 <div class="container">
@@ -27,19 +28,19 @@
             </tr>
             </thead>
             <tbody>
-             Object[] developers = (Object[]) request.getAttribute("developers");
+            <%
+
              for(Object objDeveloper : developers){
              ua.model.Developer developer = (ua.model.Developer) objDeveloper;
              %>
              <tr>
-                    <td><%= project.getName() %></td>
-                    <td><%= developer.getName()  %></td>
+                <td><%= project.getName()  %></td>
+                <td><%= developer.getName()  %></td>
             </tr>
+            <% } %>
+
             </tbody>
         </table>
-
-
-
     </div>
 </body>
 </html>

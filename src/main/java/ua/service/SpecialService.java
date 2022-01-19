@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import ua.dao.SpecialDao;
 import ua.model.Developer;
 import ua.model.Project;
+import ua.model.ProjectList;
 import ua.model.Skills;
 
 import java.sql.SQLException;
@@ -66,5 +67,15 @@ public class SpecialService {
             LOGGER.error("Task4 error", e);
         }
         return list;
+    }
+
+    public List<ProjectList> task5(){
+        List<ProjectList> projects =null;
+        try {
+           projects= specialDao.getProjectsListDao();
+        } catch (SQLException e) {
+            LOGGER.error("Task 5 error", e);
+        }
+        return projects;
     }
 }

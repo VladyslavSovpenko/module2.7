@@ -43,7 +43,7 @@
                             <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                                 <div class="btn-group mr-2" role="group" aria-label="First group">
                                     <a href="/customers/<%= customer.getId() %>" type="button" class="btn btn-warning">Edit</a>
-                                    <a href="/customers/delete/<%= customer.getId() %>"type="button" class="btn btn-danger">Remove</a>
+                                    <a href="/customers?deleteId=<%= customer.getId() %>"type="button" class="btn btn-danger">Remove</a>
                                 </div>
 
                             </div>

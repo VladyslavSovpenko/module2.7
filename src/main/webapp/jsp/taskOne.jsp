@@ -22,13 +22,13 @@
 <table class="table">
             <thead>
             <tr>
-                <th scope="col">Id</th>
+                <th scope="col">Project name</th>
                 <th scope="col">Sum</th>
             </tr>
             </thead>
             <tbody>
             <tr>
-                    <td><%= project.getId() %></td>
+                    <td><%= project.getName() %></td>
                     <td><%= project.getCost()  %></td>
             </tr>
             </tbody>
