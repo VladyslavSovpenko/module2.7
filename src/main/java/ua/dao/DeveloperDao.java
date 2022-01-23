@@ -22,7 +22,7 @@ public class DeveloperDao extends AbstractDao<Developer> {
         developer.setName(resultSet.getString("name"));
         developer.setSalary(resultSet.getLong("salary"));
         developer.setSex(resultSet.getString("sex"));
-        return developer;
+               return developer;
     }
 
     @Override
@@ -30,7 +30,7 @@ public class DeveloperDao extends AbstractDao<Developer> {
         String sql = "insert into developers(name, age, sex, salary) values(?,?,?,?)";
 
         DbHelper.executeWithPreparedStatement(sql, ps -> {
-            ps.setString(1, entity.getName());
+                     ps.setString(1, entity.getName());
             ps.setLong(2, entity.getAge());
             ps.setString(3, entity.getSex());
             ps.setLong(4, entity.getSalary());
