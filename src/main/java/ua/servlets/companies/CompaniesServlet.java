@@ -29,7 +29,7 @@ public class CompaniesServlet extends HttpServlet {
             List<Companies> all = companiesService.getAll();
             Object[] companies = all.toArray();
             req.setAttribute("companies", companies);
-            req.getRequestDispatcher("companies.jsp").forward(req, resp);
+            req.getRequestDispatcher("/jsp/companies.jsp").forward(req, resp);
 
     }
 

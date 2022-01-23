@@ -28,14 +28,14 @@ public class ViewCompaniesServlet extends HttpServlet {
         if ("new".equalsIgnoreCase(id)) {
             req.setAttribute("companies", new Companies());
             req.setAttribute("isNew", true);
-            req.getRequestDispatcher("/company.jsp").forward(req, resp);
+            req.getRequestDispatcher("/jsp/company.jsp").forward(req, resp);
         }
 
         Optional<Companies> companiesOptional = companiesService.get(Long.parseLong(id));
         if (companiesOptional.isPresent()) {
             Companies companies = companiesOptional.get();
             req.setAttribute("companies", companies);
-            req.getRequestDispatcher("/company.jsp").forward(req, resp);
+            req.getRequestDispatcher("/jsp/company.jsp").forward(req, resp);
         }
         resp.sendRedirect("/companies");
     }

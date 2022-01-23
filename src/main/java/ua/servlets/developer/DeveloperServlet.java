@@ -30,7 +30,7 @@ public class DeveloperServlet extends HttpServlet {
         List<Developer> all = developerService.getAll();
         Object[] users = all.toArray();
         request.setAttribute("developers", users);
-        request.getRequestDispatcher("developers.jsp").forward(request, response);
+        request.getRequestDispatcher("/jsp/developers.jsp").forward(request, response);
     }
 
     @Override

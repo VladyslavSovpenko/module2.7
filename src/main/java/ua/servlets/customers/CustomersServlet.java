@@ -32,7 +32,7 @@ public class CustomersServlet extends HttpServlet {
         List<Customers> all = customerService.getAll();
         Object[] customers = all.toArray();
         req.setAttribute("customers", customers);
-        req.getRequestDispatcher("customers.jsp").forward(req, resp);
+        req.getRequestDispatcher("/jsp/customers.jsp").forward(req, resp);
     }
 
     @Override

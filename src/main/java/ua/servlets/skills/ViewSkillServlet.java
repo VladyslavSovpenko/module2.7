@@ -28,13 +28,13 @@ public class ViewSkillServlet extends HttpServlet {
             req.setAttribute("skills", new Skills());
             req.setAttribute("isNew", true);
 
-            req.getRequestDispatcher("/skill.jsp").forward(req, resp);
+            req.getRequestDispatcher("/jsp/skill.jsp").forward(req, resp);
         }
         Optional<Skills> skillsOptional = skillService.get(Long.parseLong(id));
         if (skillsOptional.isPresent()) {
             Skills skills = skillsOptional.get();
             req.setAttribute("skills", skills);
-            req.getRequestDispatcher("/skill.jsp").forward(req, resp);
+            req.getRequestDispatcher("/jsp/skill.jsp").forward(req, resp);
         }
         resp.sendRedirect("/skills");
     }

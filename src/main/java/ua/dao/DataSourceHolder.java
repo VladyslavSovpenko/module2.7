@@ -13,9 +13,7 @@ public class DataSourceHolder {
 
     private DataSourceHolder() {
         Properties prop = AppProperties.getProperties();
-
            initPG(prop);
-
         PGSimpleDataSource dataSource = initPG(prop);
         this.dataSource = dataSource;
 

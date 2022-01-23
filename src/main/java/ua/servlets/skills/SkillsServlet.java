@@ -4,11 +4,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import ua.model.Developer;
 import ua.model.Skills;
 import ua.service.HandleBodyUtil;
 import ua.service.SkillService;
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -31,7 +29,7 @@ public class SkillsServlet extends HttpServlet {
         List<Skills> all = skillService.getAll();
         Object[] skills = all.toArray();
         req.setAttribute("skills", skills);
-        req.getRequestDispatcher("skills.jsp").forward(req, resp);
+        req.getRequestDispatcher("/jsp/skills.jsp").forward(req, resp);
     }
 
     @Override

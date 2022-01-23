@@ -30,7 +30,7 @@ public class ProjectServlet extends HttpServlet {
         List<Project> all = service.getAll();
         Object[] projects = all.toArray();
         req.setAttribute("projects", projects);
-        req.getRequestDispatcher("projects.jsp").forward(req,resp);
+        req.getRequestDispatcher("/jsp/projects.jsp").forward(req,resp);
     }
 
     @Override

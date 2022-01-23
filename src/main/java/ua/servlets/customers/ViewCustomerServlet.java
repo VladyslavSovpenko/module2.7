@@ -27,14 +27,14 @@ public class ViewCustomerServlet extends HttpServlet {
         if ("new".equalsIgnoreCase(id)){
             req.setAttribute("customers", new Customers());
             req.setAttribute("isNew", true);
-            req.getRequestDispatcher("/customer.jsp").forward(req,resp);
+            req.getRequestDispatcher("/jsp/customer.jsp").forward(req,resp);
         }
 
         Optional<Customers> customersOptional = customerService.get(Long.parseLong(id));
         if (customersOptional.isPresent()) {
             Customers customers = customersOptional.get();
             req.setAttribute("customers", customers);
-            req.getRequestDispatcher("/customer.jsp").forward(req, resp);
+            req.getRequestDispatcher("/jsp/customer.jsp").forward(req, resp);
         }
         resp.sendRedirect("/customers");
     }

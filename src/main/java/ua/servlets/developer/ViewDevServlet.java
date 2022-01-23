@@ -27,13 +27,13 @@ public class ViewDevServlet extends HttpServlet {
             req.setAttribute("developer", new Developer());
             req.setAttribute("isNew", true);
 
-            req.getRequestDispatcher("/developer.jsp").forward(req, resp);
+            req.getRequestDispatcher("/jsp/developer.jsp").forward(req, resp);
         }
         Optional<Developer> developerOptional = developerService.get(Long.parseLong(id));
         if (developerOptional.isPresent()) {
             Developer dev = developerOptional.get();
             req.setAttribute("developer", dev);
-            req.getRequestDispatcher("/developer.jsp").forward(req, resp);
+            req.getRequestDispatcher("/jsp/developer.jsp").forward(req, resp);
         }
         resp.sendRedirect("/developers");
     }

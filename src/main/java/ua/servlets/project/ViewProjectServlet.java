@@ -28,14 +28,14 @@ public class ViewProjectServlet extends HttpServlet {
         if("new".equalsIgnoreCase(id)){
             req.setAttribute("project", new Project());
             req.setAttribute("isNew", true);
-            req.getRequestDispatcher("/project.jsp").forward(req,resp);
+            req.getRequestDispatcher("/jsp/project.jsp").forward(req,resp);
         }
 
         Optional<Project> projectOptional = service.get(Long.parseLong(id));
         if (projectOptional.isPresent()) {
             Project project = projectOptional.get();
             req.setAttribute("project", project);
-            req.getRequestDispatcher("/project.jsp").forward(req, resp);
+            req.getRequestDispatcher("/jsp/project.jsp").forward(req, resp);
         }
         resp.sendRedirect("/projects");
     }
