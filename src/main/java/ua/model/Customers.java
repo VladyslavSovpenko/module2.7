@@ -1,8 +1,15 @@
 package ua.model;
 
-import ua.dao.Identity;
+import javax.persistence.*;
 
-public class Customers implements Identity {
+@Entity
+@Table(name = "customers")
+@NamedQueries({
+        @NamedQuery(name = "getAllCustomers", query = "from Customers")
+})
+public class Customers {
+    @Id
+    @GeneratedValue(generator = "customers_id_seq")
     private Long id;
     private String name;
     private String country;

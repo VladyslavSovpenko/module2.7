@@ -1,60 +1,60 @@
 package ua.dao;
 
-import ua.DbHelper;
+import org.hibernate.ObjectNotFoundException;
+import ua.config.PersistenceProvider;
+import ua.model.Customers;
+import ua.model.Developer;
 
-import java.sql.ResultSet;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class AbstractDao<T extends Identity> implements Dao<T> {
+public abstract class AbstractDao<T> implements Dao<T> {
 
-    abstract String getTableName();
+    private final Class<T> entityType;
+    protected EntityManager em = PersistenceProvider.getEntityManager();
 
-    abstract T mapToEntity(ResultSet resultSet) throws SQLException;
+    public AbstractDao(Class<T> entityType) {
+        this.entityType = entityType;
+    }
+
+    @Override
+    public void create(T entity) throws SQLException {
+        em.getTransaction().begin();
+        em.persist(entity);
+        em.getTransaction().commit();
+    }
+
+    @Override
+    public void update(T entity) throws SQLException {
+        em.getTransaction().begin();
+        em.merge(entity);
+        em.getTransaction().commit();
+    }
 
     @Override
     public void delete(T entity) {
-        String sql = String.format("delete from %s where id=?", getTableName());
-        try {
-            DbHelper.executeWithPreparedStatement(sql, ps -> {
-                ps.setLong(1, entity.getId());
-            });
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        System.out.println("Deleted from " + getTableName());
+        em.getTransaction().begin();
+         entity = em.merge(entity);
+        em.remove(entity);
+        em.getTransaction().commit();
     }
 
     @Override
-    public Optional<T> get(Long id) throws SQLException {
-        String query = String.format("select * from %s where id=?", getTableName());
-        ResultSet resultSet = DbHelper.getWithPreparedStatement(
-                query, ps -> {
-                    ps.setLong(1, id);
-                });
-        if (resultSet.next()) {
-            System.out.println("Record was selected");
-            return Optional.of(mapToEntity(resultSet));
-        } else {
+    public List<T> getAll() {
+        Query getAll = em.createQuery("from " + entityType.getSimpleName(),entityType);
+        return getAll.getResultList();
+    }
+
+    @Override
+    public Optional get(Long id) throws SQLException {
+        try {
+            T entity = em.find(entityType, id);
+            return Optional.of(entity);
+        } catch (ObjectNotFoundException e) {
             return Optional.empty();
         }
     }
-
-    @Override
-    public List<T> getAll() throws SQLException {
-        List<T> result = new ArrayList<>();
-        String query = String.format("select * from %s", getTableName());
-        ResultSet resultSet = DbHelper.getWithPreparedStatement(
-                query, ps -> {
-                });
-        while (resultSet.next()) {
-            result.add(mapToEntity(resultSet));
-        }
-        resultSet.close();
-        return result;
-    }
-
-
 }

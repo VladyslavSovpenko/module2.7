@@ -1,15 +1,39 @@
 package ua.model;
 
-import ua.dao.Identity;
+import javax.persistence.*;
+import java.util.List;
 
-
-public class Developer implements Identity {
+@Entity
+@Table(name = "developers")
+@NamedQueries({
+        @NamedQuery(name = "getAllDeveloper", query = "from Developer"),
+})
+public class Developer {
     private String name;
+    @Id
+    @GeneratedValue(generator = "developers_id_seq")
     private Long id;
     private String sex;
     private Long salary;
     private Long age;
     private String password;
+
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+            name = "dev_to_project",
+            joinColumns = { @JoinColumn(name = "id_dev") },
+            inverseJoinColumns = { @JoinColumn(name = "id_projects") }
+    )
+    private List<Project> projectList;
+
+
+    public List<Project> getProjectList() {
+        return projectList;
+    }
+
+    public void setProjectList(List<Project> projectList) {
+        this.projectList = projectList;
+    }
 
     public String getPassword() {
         return password;

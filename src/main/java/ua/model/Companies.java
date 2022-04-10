@@ -1,11 +1,20 @@
 package ua.model;
 
-import ua.dao.Identity;
+import javax.persistence.*;
 
-public class Companies implements Identity {
-private Long id;
-private String name;
-private Long number;
+@Entity
+@Table(name = "companies")
+@NamedQueries({
+        @NamedQuery(name = "getAllCompanies", query = "from Companies")
+})
+
+public class Companies {
+    @Id
+    @GeneratedValue(generator = "companies_id_seq")
+    private Long id;
+    private String name;
+    @Column(name = "number_of_projects")
+    private Long number;
 
     public Long getNumber() {
         return number;
@@ -30,7 +39,6 @@ private Long number;
     public void setName(String name) {
         this.name = name;
     }
-
 
 
     @Override

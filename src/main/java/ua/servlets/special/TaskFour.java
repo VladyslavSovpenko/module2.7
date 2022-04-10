@@ -15,22 +15,22 @@ import java.util.List;
 @WebServlet("/taskfour")
 public class TaskFour extends HttpServlet {
 
-    private static SpecialService specialService = SpecialService.getInstance();
-    Skills skills = new Skills();
-    List<Developer> developers;
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Object[] users = developers.toArray();
-        req.setAttribute("developers", users);
-        req.setAttribute("skills", skills);
-        req.getRequestDispatcher("/jsp/taskFour.jsp").forward(req, resp);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        this.skills = HandleBodyUtil.getModelFromStream(req.getInputStream(), Skills.class);
-        this.developers = specialService.task4(skills);
-
-    }
+//    private static SpecialService specialService = SpecialService.getInstance();
+//    Skills skills = new Skills();
+//    List<Developer> developers;
+//
+//    @Override
+//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        Object[] users = developers.toArray();
+//        req.setAttribute("developers", users);
+//        req.setAttribute("skills", skills);
+//        req.getRequestDispatcher("/jsp/taskFour.jsp").forward(req, resp);
+//    }
+//
+//    @Override
+//    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        this.skills = HandleBodyUtil.getModelFromStream(req.getInputStream(), Skills.class);
+//        this.developers = specialService.task4(skills);
+//
+//    }
 }

@@ -14,13 +14,13 @@ import java.util.List;
 @WebServlet("/taskfive")
 public class TaskFive extends HttpServlet {
 
-    private static SpecialService specialService = SpecialService.getInstance();
+//    private static SpecialService specialService = SpecialService.getInstance();
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<ProjectList> projectLists = specialService.task5();
-        Object[] objects = projectLists.toArray();
-        req.setAttribute("list",objects);
-        req.getRequestDispatcher("/jsp/taskFive.jsp").forward(req,resp);
-    }
+//    @Override
+//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        List<ProjectList> projectLists = specialService.task5();
+//        Object[] objects = projectLists.toArray();
+//        req.setAttribute("list",objects);
+//        req.getRequestDispatcher("/jsp/taskFive.jsp").forward(req,resp);
+//    }
 }

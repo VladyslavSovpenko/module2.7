@@ -1,15 +1,34 @@
 package ua.model;
 
-import ua.dao.Identity;
-
+import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
-public class Project implements Identity {
-   private Long id;
-   private String name;
-   private String language;
-   private Long cost;
-   private Date date;
+@Entity
+@Table(name = "projects")
+@NamedQueries({
+        @NamedQuery(name = "getAllProject", query = "from Project")
+})
+public class Project {
+    @Id
+    @GeneratedValue(generator = "projects_id_seq")
+    private Long id;
+    private String name;
+    private String language;
+    private Long cost;
+    @Column(name = "date_added")
+    private Date date;
+
+    @ManyToMany(mappedBy = "projectList")
+    private List<Developer> developerList;
+
+    public List<Developer> getDeveloperList() {
+        return developerList;
+    }
+
+    public void setDeveloperList(List<Developer> developerList) {
+        this.developerList = developerList;
+    }
 
     public Long getId() {
         return id;

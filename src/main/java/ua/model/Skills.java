@@ -1,13 +1,22 @@
 package ua.model;
 
-import ua.dao.Identity;
 
-public class Skills implements Identity {
+import javax.persistence.*;
+
+@Entity
+@Table(name = "skills")
+@NamedQueries({
+        @NamedQuery(name = "getAllSkill", query = "from Skills")
+})
+public class Skills {
+    @Id
+    @GeneratedValue(generator = "skills_id_seq")
     private Long id;
     private String language;
+    @Column(name ="skill_rate")
     private String skillRate;
 
-    @Override
+
     public Long getId() {
         return id;
     }
